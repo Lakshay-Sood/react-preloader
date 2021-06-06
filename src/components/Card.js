@@ -24,23 +24,30 @@ function Card(props) {
 	const [isLoadingImage, setIsLoadingImage] = useState(false);
 
 	useEffect(() => {
-		setTimeout(() => {
-			setIsLoadingContent(false);
-			// setTimeout(() => setIsLoadingImage(false), 1000);
-		}, 1000);
-
-		const imageUrl =
-			'https://www.inquirer.com/resizer/z1UbCvhMdY7beQm5HitlFYpaD5Q=/1400x932/smart/cloudfront-us-east-1.images.arcpublishing.com/pmn/3QIB3YQ4F5BSVCZUWE5Y3RFOD4.jpg';
 		let imgDiv = document.querySelector('.imageDiv');
-		let preloaderImg = document.createElement('img');
-		preloaderImg.src = imageUrl;
 		setIsLoadingImage(true);
+		// explicit 1s wait to simulate api call
+		setTimeout(() => {
+			let preLoadThumbnails = document.createElement('img');
+			preLoadThumbnails.src =
+				'https://material-ui.com/static/images/avatar/2.jpg';
+			preLoadThumbnails.addEventListener('load', (event) => {
+				preLoadThumbnails = null;
+				setIsLoadingContent(false);
+			});
 
-		preloaderImg.addEventListener('load', (event) => {
-			imgDiv.style.backgroundImage = `url(${imageUrl})`;
-			preloaderImg = null;
-			setIsLoadingImage(false);
-		});
+			const imageUrl =
+				'https://www.inquirer.com/resizer/z1UbCvhMdY7beQm5HitlFYpaD5Q=/1400x932/smart/cloudfront-us-east-1.images.arcpublishing.com/pmn/3QIB3YQ4F5BSVCZUWE5Y3RFOD4.jpg';
+
+			let preloaderImg = document.createElement('img');
+			preloaderImg.src = imageUrl;
+
+			preloaderImg.addEventListener('load', (event) => {
+				imgDiv.style.backgroundImage = `url(${imageUrl})`;
+				preloaderImg = null;
+				setIsLoadingImage(false);
+			});
+		}, 1000);
 	}, []);
 
 	return (
@@ -94,9 +101,15 @@ function Card(props) {
 					<h2>{title}</h2>
 					<p>{description}</p>
 					<span className="avatars">
-						<Avatar src={thumbnailPerson} />
-						<Avatar src={thumbnailPerson} className="shiftLeft" />
-						<Avatar src={thumbnailPerson} className="shiftLeft" />
+						<Avatar src="https://material-ui.com/static/images/avatar/2.jpg" />
+						<Avatar
+							src="https://material-ui.com/static/images/avatar/2.jpg"
+							className="shiftLeft"
+						/>
+						<Avatar
+							src="https://material-ui.com/static/images/avatar/2.jpg"
+							className="shiftLeft"
+						/>
 						<span>+{numPublications} publications globally</span>
 					</span>
 					<div className="stats">
