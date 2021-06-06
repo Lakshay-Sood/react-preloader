@@ -5,6 +5,7 @@ import GrainIcon from '@material-ui/icons/Grain';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ShareIcon from '@material-ui/icons/Share';
 import './card.css';
+import thumbnailPerson from './../images/thumbnail_person.jpeg';
 
 function Card(props) {
 	const {
@@ -20,13 +21,26 @@ function Card(props) {
 	} = props.data;
 
 	const [isLoadingContent, setIsLoadingContent] = useState(true);
-	const [isLoadingImage, setIsLoadingImage] = useState(true);
+	const [isLoadingImage, setIsLoadingImage] = useState(false);
 
 	useEffect(() => {
 		setTimeout(() => {
 			setIsLoadingContent(false);
-			setTimeout(() => setIsLoadingImage(false), 1000);
-		}, 2000);
+			// setTimeout(() => setIsLoadingImage(false), 1000);
+		}, 1000);
+
+		const imageUrl =
+			'https://www.inquirer.com/resizer/z1UbCvhMdY7beQm5HitlFYpaD5Q=/1400x932/smart/cloudfront-us-east-1.images.arcpublishing.com/pmn/3QIB3YQ4F5BSVCZUWE5Y3RFOD4.jpg';
+		let imgDiv = document.querySelector('.imageDiv');
+		let preloaderImg = document.createElement('img');
+		preloaderImg.src = imageUrl;
+		setIsLoadingImage(true);
+
+		preloaderImg.addEventListener('load', (event) => {
+			imgDiv.style.backgroundImage = `url(${imageUrl})`;
+			preloaderImg = null;
+			setIsLoadingImage(false);
+		});
 	}, []);
 
 	return (
@@ -80,15 +94,9 @@ function Card(props) {
 					<h2>{title}</h2>
 					<p>{description}</p>
 					<span className="avatars">
-						<Avatar src="https://material-ui.com/static/images/avatar/1.jpg" />
-						<Avatar
-							src="https://material-ui.com/static/images/avatar/2.jpg"
-							className="shiftLeft"
-						/>
-						<Avatar
-							src="https://material-ui.com/static/images/avatar/3.jpg"
-							className="shiftLeft"
-						/>
+						<Avatar src={thumbnailPerson} />
+						<Avatar src={thumbnailPerson} className="shiftLeft" />
+						<Avatar src={thumbnailPerson} className="shiftLeft" />
 						<span>+{numPublications} publications globally</span>
 					</span>
 					<div className="stats">
