@@ -33,23 +33,18 @@ function Card(props) {
 		<div className="card">
 			{/* Card-Image */}
 			{isLoadingImage ? (
-				<Skeleton
-					animation="wave"
-					variant="rect"
-					width="100%"
-					height={200}
-					style={{
-						borderTopLeftRadius: '0.5em',
-						borderTopRightRadius: '0.5em',
-					}}
-				/>
+				<Skeleton className="skeletonImg" animation="wave" variant="rect" />
 			) : (
-				<img src={imgSrc} alt="something" />
+				<div
+					className="imageDiv"
+					style={{ backgroundImage: `url(${imgSrc})` }}
+				></div>
+				// <img src={imgSrc} alt="something" />
 			)}
 
 			{/* Card-Content */}
 			{isLoadingContent ? (
-				<div className="contentSkeleton">
+				<div className="skeletonContent">
 					<Skeleton variant="text" height={40} width="40%" />
 					<Skeleton
 						variant="text"

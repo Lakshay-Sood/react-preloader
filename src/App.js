@@ -10,7 +10,7 @@ function App() {
 		datePosted: 'May 29, 2021',
 		title: "Bill gates regains his position as the World's richest",
 		description:
-			'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ',
+			'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ',
 		numPublications: 543,
 		numReach: 23,
 		numShare: 467,

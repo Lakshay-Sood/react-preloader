@@ -1,31 +1,37 @@
 .card {
   border-radius: 0.5em;
   border: 1px solid gray;
-  width: 32%;
-  min-width: 400px;
-  max-width: 450px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-orient: vertical;
+  min-width: 600px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 500px;
+  margin-bottom: 1em;
 }
 
-.card > img {
-  width: 100%;
-  height: 200px;
-  aspect-ratio: attr(width)/attr(height);
+.card > .imageDiv {
+  width: 80%;
   border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  background-size: cover;
+  background-position: center;
 }
 
-.card .contentSkeleton {
+.card .skeletonImg {
+  min-width: 45%;
+  min-height: 300px;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+}
+
+.card .skeletonContent {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -33,10 +39,16 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 1em;
 }
 
-.card .contentSkeleton .inlineSkeleton {
+.card .skeletonContent .inlineSkeleton {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -102,5 +114,70 @@
 
 .card .cardContent .stats span span {
   margin-left: 0.3em;
+}
+
+@media screen and (min-width: 1060px) {
+  .card {
+    width: 32%;
+    min-width: 300px;
+    max-width: 500px;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    height: 580px;
+  }
+  .card > .imageDiv {
+    width: 100%;
+    height: 200px;
+    border-top-right-radius: 0.5em;
+    border-bottom-left-radius: 0;
+  }
+  .card .skeletonImg {
+    height: 200px;
+    width: 100%;
+    min-height: unset;
+    border-top-right-radius: 0.5em;
+    border-bottom-left-radius: 0;
+  }
+  .card .skeletonContent {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 1em;
+  }
+  .card .skeletonContent .inlineSkeleton {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+@media screen and (min-width: 1233px) {
+  .card {
+    height: 550px;
+  }
+}
+
+@media screen and (min-width: 1352px) {
+  .card > .imageDiv {
+    height: 230px;
+  }
+  .card .skeletonImg {
+    height: 230px;
+  }
 }
 /*# sourceMappingURL=card.css.map */
