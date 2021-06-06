@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACb,aAAa,EAAE,KAAK;EACpB,MAAM,EAAE,cAAc;EACtB,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,YAAY;EAC7B,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,CAAC;EACV,KAAK,EAAE,KAAK;CAKZ;;AAZD,AASC,aATY,CASZ,IAAI,CAAC;EACJ,OAAO,EAAE,KAAK;CACd",
+    "sources": [
+        "PageSelectButton.scss"
+    ],
+    "names": [],
+    "file": "PageSelectButton.css"
+}
