@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import './PageSelectButton.css';
 
 function PageSelectButton({ numPages }) {
-	// const [isLoading, setIsLoading] = useState(true);
-
-	// useEffect(() => {
-	// 	setTimeout(() => setIsLoading(false), 1000);
-	// }, []);
-
 	return (
 		<div>
 			<div className="pageSelector">
