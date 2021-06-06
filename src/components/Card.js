@@ -20,20 +20,18 @@ function Card(props) {
 	} = props.data;
 
 	const [isLoadingContent, setIsLoadingContent] = useState(true);
-	const [isLoadingImage, setIsLoadingImage] = useState(false);
+	const [isLoadingImage, setIsLoadingImage] = useState(true);
 
 	useEffect(() => {
-		let imgDiv = document.querySelector('.imageDiv');
-		setIsLoadingImage(true);
+		// let imgDiv = document.querySelector('.imageDiv');
+		// setIsLoadingImage(true);
 
 		let preLoadThumbnails = document.createElement('img');
 		preLoadThumbnails.src =
 			'https://material-ui.com/static/images/avatar/2.jpg';
 
-		const imageUrl =
-			'https://www.inquirer.com/resizer/z1UbCvhMdY7beQm5HitlFYpaD5Q=/1400x932/smart/cloudfront-us-east-1.images.arcpublishing.com/pmn/3QIB3YQ4F5BSVCZUWE5Y3RFOD4.jpg';
 		let preloaderImg = document.createElement('img');
-		preloaderImg.src = imageUrl;
+		preloaderImg.src = imgSrc;
 
 		preLoadThumbnails.addEventListener('load', (event) => {
 			preLoadThumbnails = null;
@@ -41,11 +39,13 @@ function Card(props) {
 		});
 
 		preloaderImg.addEventListener('load', (event) => {
-			imgDiv.style.backgroundImage = `url(${imageUrl})`;
-			preloaderImg = null;
 			setIsLoadingImage(false);
+			document.querySelector(
+				'.imageDiv'
+			).style.backgroundImage = `url(${imgSrc})`;
+			preloaderImg = null;
 		});
-	}, []);
+	}, [imgSrc]);
 
 	return (
 		<div className="card">

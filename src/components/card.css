@@ -116,6 +116,10 @@
   margin-left: 0.3em;
 }
 
+.visibilityHidden {
+  visibility: hidden;
+}
+
 @media screen and (min-width: 1060px) {
   .card {
     width: 32%;
