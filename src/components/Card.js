@@ -5,7 +5,6 @@ import GrainIcon from '@material-ui/icons/Grain';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ShareIcon from '@material-ui/icons/Share';
 import './card.css';
-import thumbnailPerson from './../images/thumbnail_person.jpeg';
 
 function Card(props) {
 	const {
@@ -26,28 +25,26 @@ function Card(props) {
 	useEffect(() => {
 		let imgDiv = document.querySelector('.imageDiv');
 		setIsLoadingImage(true);
-		// explicit 1s wait to simulate api call
-		setTimeout(() => {
-			let preLoadThumbnails = document.createElement('img');
-			preLoadThumbnails.src =
-				'https://material-ui.com/static/images/avatar/2.jpg';
-			preLoadThumbnails.addEventListener('load', (event) => {
-				preLoadThumbnails = null;
-				setIsLoadingContent(false);
-			});
 
-			const imageUrl =
-				'https://www.inquirer.com/resizer/z1UbCvhMdY7beQm5HitlFYpaD5Q=/1400x932/smart/cloudfront-us-east-1.images.arcpublishing.com/pmn/3QIB3YQ4F5BSVCZUWE5Y3RFOD4.jpg';
+		let preLoadThumbnails = document.createElement('img');
+		preLoadThumbnails.src =
+			'https://material-ui.com/static/images/avatar/2.jpg';
 
-			let preloaderImg = document.createElement('img');
-			preloaderImg.src = imageUrl;
+		const imageUrl =
+			'https://www.inquirer.com/resizer/z1UbCvhMdY7beQm5HitlFYpaD5Q=/1400x932/smart/cloudfront-us-east-1.images.arcpublishing.com/pmn/3QIB3YQ4F5BSVCZUWE5Y3RFOD4.jpg';
+		let preloaderImg = document.createElement('img');
+		preloaderImg.src = imageUrl;
 
-			preloaderImg.addEventListener('load', (event) => {
-				imgDiv.style.backgroundImage = `url(${imageUrl})`;
-				preloaderImg = null;
-				setIsLoadingImage(false);
-			});
-		}, 1000);
+		preLoadThumbnails.addEventListener('load', (event) => {
+			preLoadThumbnails = null;
+			setIsLoadingContent(false);
+		});
+
+		preloaderImg.addEventListener('load', (event) => {
+			imgDiv.style.backgroundImage = `url(${imageUrl})`;
+			preloaderImg = null;
+			setIsLoadingImage(false);
+		});
 	}, []);
 
 	return (
