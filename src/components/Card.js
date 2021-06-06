@@ -17,6 +17,7 @@ function Card(props) {
 		numReach,
 		numShare,
 		numContributors,
+		thumbnailSrc,
 	} = props.data;
 
 	const [isLoadingContent, setIsLoadingContent] = useState(true);
@@ -27,8 +28,7 @@ function Card(props) {
 		// setIsLoadingImage(true);
 
 		let preLoadThumbnails = document.createElement('img');
-		preLoadThumbnails.src =
-			'https://material-ui.com/static/images/avatar/2.jpg';
+		preLoadThumbnails.src = thumbnailSrc;
 
 		let preloaderImg = document.createElement('img');
 		preloaderImg.src = imgSrc;
@@ -45,7 +45,7 @@ function Card(props) {
 			).style.backgroundImage = `url(${imgSrc})`;
 			preloaderImg = null;
 		});
-	}, [imgSrc]);
+	}, [imgSrc, thumbnailSrc]);
 
 	return (
 		<div className="card">
@@ -98,15 +98,9 @@ function Card(props) {
 					<h2>{title}</h2>
 					<p>{description}</p>
 					<span className="avatars">
-						<Avatar src="https://material-ui.com/static/images/avatar/2.jpg" />
-						<Avatar
-							src="https://material-ui.com/static/images/avatar/2.jpg"
-							className="shiftLeft"
-						/>
-						<Avatar
-							src="https://material-ui.com/static/images/avatar/2.jpg"
-							className="shiftLeft"
-						/>
+						<Avatar src={thumbnailSrc} />
+						<Avatar src={thumbnailSrc} className="shiftLeft" />
+						<Avatar src={thumbnailSrc} className="shiftLeft" />
 						<span>+{numPublications} publications globally</span>
 					</span>
 					<div className="stats">

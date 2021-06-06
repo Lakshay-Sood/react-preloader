@@ -4,24 +4,24 @@ import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import './PageSelectButton.css';
 
-function PageSelectButton() {
-	const [isLoading, setIsLoading] = useState(true);
+function PageSelectButton({ numPages }) {
+	// const [isLoading, setIsLoading] = useState(true);
 
-	useEffect(() => {
-		setTimeout(() => setIsLoading(false), 1000);
-	}, []);
+	// useEffect(() => {
+	// 	setTimeout(() => setIsLoading(false), 1000);
+	// }, []);
 
 	return (
 		<div>
 			<div className="pageSelector">
-				{isLoading ? (
-					<Skeleton variant="text" height={40} width="90%" />
-				) : (
+				{numPages ? (
 					<>
 						<ArrowLeftIcon style={{ borderRight: '1px solid gray' }} />
-						<span> 1 of 56K </span>
+						<span> 1 of {numPages}K </span>
 						<ArrowRightIcon style={{ borderLeft: '1px solid gray' }} />
 					</>
+				) : (
+					<Skeleton variant="text" height={40} width="90%" />
 				)}
 			</div>
 		</div>
