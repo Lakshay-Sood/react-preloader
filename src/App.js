@@ -55,5 +55,5 @@ const apiCall = () => {
 		numPages: 56,
 	};
 
-	return new Promise((resolve) => setTimeout(() => resolve(data), 1000));
+	return new Promise((resolve) => setTimeout(() => resolve(data), 3000));
 };
