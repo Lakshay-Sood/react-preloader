@@ -4,7 +4,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import GrainIcon from '@material-ui/icons/Grain';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import ShareIcon from '@material-ui/icons/Share';
-import './card.css';
+import './Card.css';
 
 function Card(props) {
 	const {
@@ -24,27 +24,8 @@ function Card(props) {
 	const [isLoadingImage, setIsLoadingImage] = useState(true);
 
 	useEffect(() => {
-		// let imgDiv = document.querySelector('.imageDiv');
-		// setIsLoadingImage(true);
-
-		let preLoadThumbnails = document.createElement('img');
-		preLoadThumbnails.src = thumbnailSrc;
-
-		let preloaderImg = document.createElement('img');
-		preloaderImg.src = imgSrc;
-
-		preLoadThumbnails.addEventListener('load', (event) => {
-			preLoadThumbnails = null;
-			setIsLoadingContent(false);
-		});
-
-		preloaderImg.addEventListener('load', (event) => {
-			setIsLoadingImage(false);
-			document.querySelector(
-				'.imageDiv'
-			).style.backgroundImage = `url(${imgSrc})`;
-			preloaderImg = null;
-		});
+		loadImg(imgSrc, () => setIsLoadingImage(false));
+		loadImg(thumbnailSrc, () => setIsLoadingContent(false));
 	}, [imgSrc, thumbnailSrc]);
 
 	return (
@@ -57,39 +38,11 @@ function Card(props) {
 					className="imageDiv"
 					style={{ backgroundImage: `url(${imgSrc})` }}
 				></div>
-				// <img src={imgSrc} alt="something" />
 			)}
 
 			{/* Card-Content */}
 			{isLoadingContent ? (
-				<div className="skeletonContent">
-					<Skeleton variant="text" height={40} width="40%" />
-					<Skeleton
-						variant="text"
-						height={60}
-						width="90%"
-						style={{ marginBottom: '0.7em' }}
-					/>
-					<Skeleton variant="text" height={30} width="70%" />
-					<Skeleton
-						variant="text"
-						height={30}
-						width="80%"
-						style={{ marginBottom: '0.5em' }}
-					/>
-					<Skeleton
-						variant="text"
-						height={30}
-						width="65%"
-						style={{ marginBottom: '0.3em' }}
-					/>
-
-					<div className="inlineSkeleton">
-						<Skeleton variant="text" height={40} width="20%" />
-						<Skeleton variant="text" height={40} width="15%" />
-						<Skeleton variant="text" height={40} width="20%" />
-					</div>
-				</div>
+				<SkeletonContent />
 			) : (
 				<div className="cardContent">
 					<span className="categoryDate">
@@ -121,3 +74,49 @@ function Card(props) {
 }
 
 export default Card;
+
+/**
+ * A helper function to load images into browser's cache
+ * @param {string} url source URL of the image
+ * @param {function():void} callback a function that is called upon image load completion
+ */
+const loadImg = (url, callback) => {
+	let loader = document.createElement('img');
+	loader.src = url;
+
+	loader.addEventListener('load', () => {
+		loader = null;
+		callback();
+	});
+};
+
+const SkeletonContent = () => (
+	<div className="skeletonContent">
+		<Skeleton variant="text" height={40} width="40%" />
+		<Skeleton
+			variant="text"
+			height={60}
+			width="90%"
+			style={{ marginBottom: '0.7em' }}
+		/>
+		<Skeleton variant="text" height={30} width="70%" />
+		<Skeleton
+			variant="text"
+			height={30}
+			width="80%"
+			style={{ marginBottom: '0.5em' }}
+		/>
+		<Skeleton
+			variant="text"
+			height={30}
+			width="65%"
+			style={{ marginBottom: '0.3em' }}
+		/>
+
+		<div className="inlineSkeleton">
+			<Skeleton variant="text" height={40} width="20%" />
+			<Skeleton variant="text" height={40} width="15%" />
+			<Skeleton variant="text" height={40} width="20%" />
+		</div>
+	</div>
+);
